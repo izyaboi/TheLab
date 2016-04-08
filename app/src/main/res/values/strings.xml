@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">TheLab</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="TheLab" />
+    <string name="add_item__title">Add Item</string>
+    <string name="btn_ok">Ok</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="add_item_dialog_edit_text_item_hint">Item</string>
+    <string name="add_item_dialog_edit_text_item_validation_message">Item should not be empty</string>
+    <string name="item_dismissed_deleted_text">Deleted</string>
+    <string name="undo">Undo</string>
+</resources>
