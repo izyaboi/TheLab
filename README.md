@@ -1,5 +1,14 @@
 # TheLab
 This is "The Lab". My Playground for new Android Technologies.
+No Protoype , no App Concept only plain implementation and test.
+
+# Technologies
+"The Lab" implement different Technologies :
+* [Butterknife](https://github.com/JakeWharton/butterknife) - For Android View Binding
+* [RxJava](https://github.com/ReactiveX/RxJava) - or composing asynchronous and event-based programs using observable sequences
+* [RxAndroid](https://github.com/ReactiveX/RxAndroid) - RxJava Binding for Android
+* [Dagger](https://github.com/google/dagger) - Fast dependency injector for Android and Java.
+* [Google Support Libary ](http://developer.android.com/tools/support-library/index.html) - Provide backward-compatible versions of Android framework APIs
 
 # License
 ```
