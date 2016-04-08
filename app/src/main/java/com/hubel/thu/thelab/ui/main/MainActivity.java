@@ -23,6 +23,7 @@ import com.firebase.ui.FirebaseRecyclerAdapter;
 import com.hubel.thu.thelab.FixSwipeableItemClickListener;
 import com.hubel.thu.thelab.R;
 import com.hubel.thu.thelab.Settings;
+import com.hubel.thu.thelab.ui.Adapter.MessageAdapter;
 import com.hubel.thu.thelab.ui.base.BaseActivity;
 import com.hudomju.swipe.OnItemClickListener;
 import com.hudomju.swipe.SwipeToDismissTouchListener;
@@ -43,11 +44,11 @@ public class MainActivity extends BaseActivity {
     @Bind(R.id.gmail_fab)
     FloatingActionButton fab;
 
-    FirebaseRecyclerAdapter<String, MessageViewHolder> mAdapter ;
+    private MessageAdapter mAdapter;
 
     Firebase mFirebaseRef = new Firebase(Settings.FIREBASE_URL);
     private boolean showFab = true;
-    ColorGenerator generator = ColorGenerator.MATERIAL;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +80,7 @@ public class MainActivity extends BaseActivity {
 
         mRecyclerView.setOnTouchListener(touchListener);
         mRecyclerView.addOnScrollListener((RecyclerView.OnScrollListener)touchListener.makeScrollListener());
+        //used fixed SwipeableItemClickListener -  overide onRequestDisallowInterceptTouchEvent to make the whole column swipeable
         mRecyclerView.addOnItemTouchListener(new FixSwipeableItemClickListener(this,
                 new OnItemClickListener() {
                     @Override
@@ -165,41 +167,11 @@ public class MainActivity extends BaseActivity {
         mAdapter.cleanup();
     }
 
-
     @Override
     protected void onStart() {
         super.onStart();
-
-        mAdapter = new FirebaseRecyclerAdapter<String, MessageViewHolder>(
-                String.class,
-                R.layout.item_layout,
-                MessageViewHolder.class,
-                mFirebaseRef
-        ) {
-            @Override
-            protected void populateViewHolder(MessageViewHolder messageViewHolder, String s, int i) {
-
-                String letter = String.valueOf(s.charAt(0));
-                TextDrawable drawable = TextDrawable.builder()
-                        .buildRound(letter, generator.getRandomColor());
-                messageViewHolder.mLetter.setImageDrawable(drawable);
-                messageViewHolder.mText.setText(s);
-            }
-        };
-
+        mAdapter = new MessageAdapter(String.class,R.layout.item_layout, MessageAdapter.MessageViewHolder.class,mFirebaseRef);
         mRecyclerView.setAdapter(mAdapter);
-    }
-
-
-    public static class MessageViewHolder extends RecyclerView.ViewHolder{
-        TextView mText;
-        ImageView mLetter;
-
-        MessageViewHolder(View view) {
-            super(view);
-            mText = (TextView) view.findViewById(R.id.txt_data);
-            mLetter = (ImageView) view.findViewById(R.id.txt_letter);
-        }
     }
 
     public Firebase getmFirebaseRef() {
