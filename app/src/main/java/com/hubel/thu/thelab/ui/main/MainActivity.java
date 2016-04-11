@@ -156,8 +156,7 @@ public class MainActivity extends BaseActivity {
     public void clickFab(View view){
         AddItemDialogFragment newFragment = new AddItemDialogFragment();
         newFragment.show(getSupportFragmentManager(),"Add item");
-    }
-*/
+    }*/
 
 
 

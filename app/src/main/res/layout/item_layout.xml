@@ -27,7 +27,7 @@
         android:paddingRight="@dimen/list_item_padding_sides"
         android:id="@+id/txt_data"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
-        android:background="@android:color/white" />
+        />
 
 </LinearLayout>
 
@@ -50,7 +50,7 @@
             android:clickable="false"
             android:layout_weight="2"
             android:hapticFeedbackEnabled="true"
-            android:textColor="@android:color/white"/>
+            android:textColor="@color/colorDismissItemDelete"/>
 
         <TextView
             android:layout_width="0dp"
@@ -60,7 +60,7 @@
             android:text="@string/undo"
             android:clickable="false"
             android:layout_weight="1"
-            android:textColor="@color/yellow"/>
+            android:textColor="@color/colorDismissItemUndo"/>
 
     </LinearLayout>
 

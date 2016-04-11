@@ -2,6 +2,8 @@ package com.hubel.thu.thelab.injection.module;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 import com.hubel.thu.thelab.injection.ApplicationContext;
 
