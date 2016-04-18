@@ -165,13 +165,13 @@
         <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/gmail_fab"
+            android:id="@+id/edit_fab"
             android:layout_gravity="end"
             android:visibility="gone"
             android:layout_marginEnd="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:clickable="true"
-            android:src="@android:drawable/ic_dialog_email"  />
+            android:src="@drawable/ic_mode_edit_white_24px"  />
 
 
     </FrameLayout>

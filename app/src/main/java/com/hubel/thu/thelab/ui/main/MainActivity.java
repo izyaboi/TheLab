@@ -5,33 +5,26 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.amulyakhare.textdrawable.TextDrawable;
-import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.firebase.client.Firebase;
-import com.firebase.ui.FirebaseRecyclerAdapter;
 import com.hubel.thu.thelab.FixSwipeableItemClickListener;
 import com.hubel.thu.thelab.R;
 import com.hubel.thu.thelab.Settings;
-import com.hubel.thu.thelab.ui.Adapter.MessageAdapter;
+
+import com.hubel.thu.thelab.ui.adapter.MessageAdapter;
 import com.hubel.thu.thelab.ui.base.BaseActivity;
 import com.hudomju.swipe.OnItemClickListener;
 import com.hudomju.swipe.SwipeToDismissTouchListener;
-import com.hudomju.swipe.SwipeableItemClickListener;
 import com.hudomju.swipe.adapter.RecyclerViewAdapter;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity {
 
@@ -41,7 +34,7 @@ public class MainActivity extends BaseActivity {
     RecyclerView mRecyclerView;
     @Bind(R.id.coordinator)
     CoordinatorLayout coordinatorLayout;
-    @Bind(R.id.gmail_fab)
+    @Bind(R.id.edit_fab)
     FloatingActionButton fab;
 
     private MessageAdapter mAdapter;
