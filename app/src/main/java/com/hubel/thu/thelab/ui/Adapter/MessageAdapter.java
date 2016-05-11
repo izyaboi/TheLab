@@ -1,4 +1,4 @@
-package com.hubel.thu.thelab.ui.Adapter;
+package com.hubel.thu.thelab.ui.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

@@ -1,4 +1,4 @@
-package com.hubel.thu.thelab.ui.main;
+package com.hubel.thu.thelab.ui.activity;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

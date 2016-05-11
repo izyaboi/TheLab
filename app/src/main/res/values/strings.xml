@@ -10,7 +10,9 @@
     <string name="add_item_dialog_edit_text_item_validation_message">Item should not be empty</string>
     <string name="item_dismissed_deleted_text">Deleted</string>
     <string name="undo">Undo</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="invalid_email">Email is invalid</string>
+    <string name="invalid_password">Password must be at least 6 characters</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_in_message">You have signed in!</string>
+    <string name="sign_uo_message">You have signed up!</string>
 </resources>

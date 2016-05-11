@@ -6,4 +6,10 @@
     <color name="colorTextPrimary">#000000</color>
     <color name="colorDismissItemDelete">#B71C1C</color>
     <color name="colorDismissItemUndo">#8BC34A</color>
+   <!-- Material Color-->
+    <color name="grey_400">#BDBDBD</color>
+    <color name="grey_500">#9E9E9E</color>
+    <color name="grey_700">#616161</color>
+
+
 </resources>
