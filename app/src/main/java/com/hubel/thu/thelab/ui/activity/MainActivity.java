@@ -1,5 +1,6 @@
 package com.hubel.thu.thelab.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
@@ -8,18 +9,19 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
-import com.firebase.client.Firebase;
+import com.google.firebase.auth.FirebaseAuth;
 import com.hubel.thu.thelab.FixSwipeableItemClickListener;
 import com.hubel.thu.thelab.R;
-import com.hubel.thu.thelab.Settings;
 
-import com.hubel.thu.thelab.ui.adapter.MessageAdapter;
 import com.hubel.thu.thelab.ui.base.BaseActivity;
+import com.hubel.thu.thelab.ui.fragment.SignInFragment;
 import com.hudomju.swipe.OnItemClickListener;
 import com.hudomju.swipe.SwipeToDismissTouchListener;
 import com.hudomju.swipe.adapter.RecyclerViewAdapter;
@@ -37,11 +39,28 @@ public class MainActivity extends BaseActivity {
     @Bind(R.id.edit_fab)
     FloatingActionButton fab;
 
-    private MessageAdapter mAdapter;
 
-    Firebase mFirebaseRef = new Firebase(Settings.FIREBASE_URL);
     private boolean showFab = true;
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_settings) {
+            return true;
+        } else if( id == R.id.action_logout){
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(this, SignInActivity.class);
+            startActivity(intent);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main,menu);
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +81,7 @@ public class MainActivity extends BaseActivity {
                 new SwipeToDismissTouchListener.DismissCallbacks<RecyclerViewAdapter>(){
             @Override
             public void onDismiss(RecyclerViewAdapter view ,int position) {
-                mAdapter.notifyItemRemoved(position);
+
             }
 
             @Override
@@ -151,24 +170,6 @@ public class MainActivity extends BaseActivity {
         newFragment.show(getSupportFragmentManager(),"Add item");
     }*/
 
-
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mAdapter.cleanup();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        mAdapter = new MessageAdapter(String.class,R.layout.item_layout, MessageAdapter.MessageViewHolder.class,mFirebaseRef);
-        mRecyclerView.setAdapter(mAdapter);
-    }
-
-    public Firebase getmFirebaseRef() {
-        return mFirebaseRef;
-    }
 
 
 

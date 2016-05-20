@@ -1,32 +1,36 @@
 package com.hubel.thu.thelab.ui.fragment;
 
-import android.content.Context;
-import android.net.Uri;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.FirebaseUser;
 import com.hubel.thu.thelab.R;
+import com.hubel.thu.thelab.ui.activity.MainActivity;
 import com.hubel.thu.thelab.ui.base.BaseFragment;
 import com.hubel.thu.thelab.ui.util.DisplayUtil;
 import com.jakewharton.rxbinding.widget.RxTextView;
-import com.stormpath.sdk.Stormpath;
-import com.stormpath.sdk.StormpathCallback;
-import com.stormpath.sdk.models.RegisterParams;
-import com.stormpath.sdk.models.StormpathError;
+
+import org.w3c.dom.Text;
 
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
@@ -48,6 +52,9 @@ import rx.functions.Func2;
  *
  */
 public class SignInFragment extends BaseFragment {
+
+    private static final String TAG = "SignInFragment";
+
     // region Views
     @Bind(R.id.toolbar)
     Toolbar toolbar;
@@ -72,69 +79,16 @@ public class SignInFragment extends BaseFragment {
     private Matcher matcher;
     // endregion
 
-    // region Listeners
-    @OnClick(R.id.sign_in_btn)
-    public void onSignInButtonClicked(View view) {
-        DisplayUtil.hideKeyboard(getContext(), view);
-// TODO: Implement SignIn
-        signInUser();
-        Snackbar.make(getActivity().findViewById(android.R.id.content),
-                getString(R.string.sign_in_message),
-                Snackbar.LENGTH_LONG)
-                .show();
-    }
-
-    private void signInUser() {
-        Stormpath.login(emailEditText.getText().toString().trim(), passwordEditText.getText().toString().trim(), new StormpathCallback() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                // Login was successful, we can now show the main screen of the app.
-            }
-
-            @Override
-            public void onFailure(StormpathError error) {
-                // Something went wrong.
-            }
-        });
-    }
-
-    // endregion
-
-    // region Listeners
-
-    @OnClick(R.id.sign_up_btn)
-    public void onSignUpButton(View view){
-        DisplayUtil.hideKeyboard(getContext(), view);
-//TODO: Impement SignUp
-
-        signUpUser();
-        Snackbar.make(getActivity().findViewById(android.R.id.content),
-                getString(R.string.sign_in_message),
-                Snackbar.LENGTH_LONG)
-                .show();
-    }
-
-    private void signUpUser() {
-        RegisterParams registerParams = new RegisterParams("", "", emailEditText.getText().toString().trim(), passwordEditText.getText().toString().trim());
-        Stormpath.register(registerParams, new StormpathCallback() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                // User successfully registered.
-            }
-
-            @Override
-            public void onFailure(StormpathError error) {
-                // Registration failed.
-            }
-        });
-    }
-
-
-
-    // endregion
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
     // region Constructors
     public SignInFragment() {
+    }
+
+    @Override
+    public void setMenuVisibility(boolean menuVisible) {
+        super.setMenuVisibility(menuVisible);
     }
     // endregion
 
@@ -162,6 +116,28 @@ public class SignInFragment extends BaseFragment {
         setRetainInstance(true);
 
         setHasOptionsMenu(true);
+        mAuth = FirebaseAuth.getInstance();
+
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    // User is signed in
+                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                    startMainActivity();
+                } else {
+                    // User is signed out
+                    Log.d(TAG, "onAuthStateChanged:signed_out");
+                }
+            }
+        };
+    }
+
+    private void startMainActivity() {
+        Intent intent = new Intent(getContext(), MainActivity.class);
+        startActivity(intent);
+        getActivity().finish();
     }
 
     @Override
@@ -177,7 +153,7 @@ public class SignInFragment extends BaseFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-       ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         if (actionBar != null) {
@@ -305,6 +281,7 @@ public class SignInFragment extends BaseFragment {
         compositeSubscription.add(signInFieldsSubscription);
     }
 
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -370,5 +347,117 @@ public class SignInFragment extends BaseFragment {
         signInButton.setEnabled(false);
         signInButton.setTextColor(ContextCompat.getColor(getContext(), R.color.grey_500));
     }
+
+
+    // region Listeners
+    @OnClick(R.id.sign_in_btn)
+    public void onSignInButtonClicked(View view) {
+        DisplayUtil.hideKeyboard(getContext(), view);
+        signInUser();
+    }
+
+    private void signInUser() {
+        String email = emailEditText.getText().toString();
+        String password = passwordEditText.getText().toString();
+        mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    startMainActivity();
+
+                }else{
+                    Log.w(TAG, "signInWithEmail", task.getException());
+                    Toast.makeText(getActivity(),task.getException().getMessage(),
+                            Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+    }
+
+    // endregion
+
+    // region Listeners
+
+    @OnClick(R.id.sign_up_btn)
+    public void onSignUpButton(View view) {
+        DisplayUtil.hideKeyboard(getContext(), view);
+        signUpUser();
+    }
+
+    private void signUpUser() {
+        String email = emailEditText.getText().toString();
+        String password = passwordEditText.getText().toString();
+
+        if(validateEmail(emailEditText.getText().toString()) && validatePassword(passwordEditText.getText().toString())){
+            mAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
+
+                            if (task.isSuccessful()){
+                                startMainActivity();
+                            }else {
+                                Toast.makeText(getActivity(), task.getException().getMessage(),
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+
+        } else if (!validateEmail(emailEditText.getText().toString())){
+            showEmailError();
+        } else if(!validatePassword(passwordEditText.getText().toString())){
+            showPasswordError();
+        }
+    }
+
+
+    @OnClick(R.id.forgot_password_btn)
+    public void onForgotPasswordButton(View view){
+        DisplayUtil.hideKeyboard(getContext(), view);
+        forgotPassword();
+    }
+
+    private void forgotPassword() {
+
+        String emailAddress = emailEditText.getText().toString();
+
+        if(validateEmail(emailAddress)){
+            mAuth.sendPasswordResetEmail(emailAddress)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Log.d(TAG, "Email sent.");
+
+                            }else {
+                                Toast.makeText(getActivity(), task.getException().getMessage(),
+                                        Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+        } else {
+            showEmailError();
+        }
+
+    }
+
+    // endregion
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
+    }
+
 }
 

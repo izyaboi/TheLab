@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "214240945388",
+    "firebase_url": "https://thelab-cdf6f.firebaseio.com",
+    "project_id": "thelab-cdf6f",
+    "storage_bucket": "thelab-cdf6f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:214240945388:android:ebe2d53eb9365db3",
+        "android_client_info": {
+          "package_name": "com.hubel.thu.thelab"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "214240945388-6av0qboa2c3k3jeu94pv6jle886977h2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCj1mRm8dWE9ID4u19qAa2zRE7Oy4-f8b4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

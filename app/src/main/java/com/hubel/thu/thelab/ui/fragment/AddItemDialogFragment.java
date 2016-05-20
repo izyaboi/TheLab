@@ -73,7 +73,7 @@ public class AddItemDialogFragment extends AppCompatDialogFragment implements It
 
     @Override
     public void onItemAdded(String item) {
-        ((MainActivity)getActivity()).getmFirebaseRef().push().setValue(item);
+
     }
 
     @Override

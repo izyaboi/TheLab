@@ -1,10 +1,12 @@
 package com.hubel.thu.thelab.ui.base;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.hubel.thu.thelab.LabApplication;
+import com.hubel.thu.thelab.R;
 import com.hubel.thu.thelab.injection.component.ActivityComponent;
 
 import com.hubel.thu.thelab.injection.component.DaggerActivityComponent;
@@ -18,6 +20,8 @@ import butterknife.ButterKnife;
 public class BaseActivity extends AppCompatActivity {
 
     private ActivityComponent mActivityComponent;
+
+    private ProgressDialog mProgressDialog;
 
     @Override
     public void onContentChanged() {
@@ -48,6 +52,30 @@ public class BaseActivity extends AppCompatActivity {
                     .build();
         }
         return mActivityComponent;
+    }
+
+
+
+    public void showProgressDialog() {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(this);
+            mProgressDialog.setMessage(getString(R.string.loading));
+            mProgressDialog.setIndeterminate(true);
+        }
+
+        mProgressDialog.show();
+    }
+
+    public void hideProgressDialog() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.hide();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        hideProgressDialog();
     }
 
 }

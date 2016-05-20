@@ -2,9 +2,10 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 
 
+
 android {
     compileSdkVersion 23
-    buildToolsVersion '24.0.0-rc2'
+    buildToolsVersion '24.0.0-rc4'
 
     defaultConfig {
         applicationId "com.hubel.thu.thelab"
@@ -32,18 +33,16 @@ android {
 }
 
 ext {
-    //Stormpath
-    stormPathSDK = '1.0.0'
+
     //Google
-    supportLibVersion = '23.3.0'
+    supportLibVersion = '23.4.0'
     dataBindingLibVersion = '1.0-rc5'
     ageraLib = '1.0.0-RC1'
     //RX Java
     rxJavaLibVersion = '1.1.0'
     rxBindingLib = '0.4.0'
     //Firebase
-    firebaseClientLibVersion = '2.5.2'
-    firebaseUiLibVersion = '0.3.1'
+    firebaseLibVersion = '9.0.0'
     //Other
     butterknifeLibVersion = '7.0.1'
     swipeToDissmissLibVersion = '1.0'
@@ -90,13 +89,16 @@ dependencies {
     compile "io.reactivex:rxjava:${rxJavaLibVersion}"
     compile "io.reactivex:rxandroid:${rxJavaLibVersion}"
     compile "com.jakewharton.rxbinding:rxbinding:${rxBindingLib}"
-    compile "com.firebase:firebase-client-android:${firebaseClientLibVersion}"
-    compile "com.firebaseui:firebase-ui:${firebaseUiLibVersion}"
     compile "com.jakewharton:butterknife:${butterknifeLibVersion}"
     compile "com.hudomju:swipe-to-dismiss-undo:${swipeToDissmissLibVersion}"
     compile "com.amulyakhare:com.amulyakhare.textdrawable:${textDrawableLibVersion}"
     compile 'javax.inject:javax.inject:1'
-    compile "com.stormpath.sdk:stormpath-sdk-android:${stormPathSDK}"
+
+    // Firebase
+    compile "com.google.firebase:firebase-core:${firebaseLibVersion}"
+    compile "com.google.firebase:firebase-auth:${firebaseLibVersion}"
+
+
 
     // Agera
     compile "com.google.android.agera:agera:${ageraLib}"
@@ -113,5 +115,8 @@ dependencies {
     apt daggerCompiler
     testApt daggerCompiler
     androidTestApt daggerCompiler
-
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha1'
 }
+
+apply plugin: 'com.google.gms.google-services'
+

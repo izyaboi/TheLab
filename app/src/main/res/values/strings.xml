@@ -2,6 +2,7 @@
     <string name="app_name">TheLab</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="action_settings">Settings</string>
+    <string name="action_logout">Logout</string>
     <string name="TheLab" />
     <string name="add_item__title">Add Item</string>
     <string name="btn_ok">Ok</string>
@@ -14,5 +15,6 @@
     <string name="invalid_password">Password must be at least 6 characters</string>
     <string name="sign_in">Sign In</string>
     <string name="sign_in_message">You have signed in!</string>
-    <string name="sign_uo_message">You have signed up!</string>
+    <string name="sign_up_message">You have signed up!</string>
+    <string name="loading">Lade...</string>
 </resources>
