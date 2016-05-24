@@ -22,15 +22,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
 import com.hubel.thu.thelab.R;
+import com.hubel.thu.thelab.ui.activity.DetailViewActivity;
 import com.hubel.thu.thelab.ui.activity.MainActivity;
 import com.hubel.thu.thelab.ui.base.BaseFragment;
 import com.hubel.thu.thelab.ui.util.DisplayUtil;
 import com.jakewharton.rxbinding.widget.RxTextView;
-
-import org.w3c.dom.Text;
 
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;

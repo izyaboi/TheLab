@@ -1,8 +1,9 @@
 package com.hubel.thu.thelab.injection.component;
 
-import com.hubel.thu.thelab.ui.activity.MainActivity;
+import com.hubel.thu.thelab.ui.activity.DetailViewActivity;
 import com.hubel.thu.thelab.injection.PerActivity;
 import com.hubel.thu.thelab.injection.module.ActivityModule;
+import com.hubel.thu.thelab.ui.activity.MainActivity;
 import com.hubel.thu.thelab.ui.activity.SignInActivity;
 
 import dagger.Component;
@@ -17,5 +18,6 @@ public interface ActivityComponent {
 
     void inject(SignInActivity signInActivity);
     void inject(MainActivity mainActivity);
+    void inject(DetailViewActivity detailViewActivity);
 
 }

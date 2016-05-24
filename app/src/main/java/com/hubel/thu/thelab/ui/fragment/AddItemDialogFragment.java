@@ -14,7 +14,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.hubel.thu.thelab.ItemAddHandler;
-import com.hubel.thu.thelab.ui.activity.MainActivity;
 import com.hubel.thu.thelab.R;
 
 import butterknife.Bind;

@@ -5,5 +5,5 @@ package com.hubel.thu.thelab;
  */
 public class Settings {
 
-    public static final String FIREBASE_URL= "https://dazzling-torch-1657.firebaseIO.com/";
+    public static final String FIREBASE_URL= "https://thelab-cdf6f.firebaseio.com/";
 }
