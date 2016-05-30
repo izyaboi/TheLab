@@ -14,29 +14,22 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.hubel.thu.thelab.FixSwipeableItemClickListener;
 import com.hubel.thu.thelab.R;
 
 import com.hubel.thu.thelab.ui.base.BaseActivity;
-import com.hubel.thu.thelab.ui.fragment.AddItemDialogFragment;
-import com.hudomju.swipe.OnItemClickListener;
-import com.hudomju.swipe.SwipeToDismissTouchListener;
-import com.hudomju.swipe.adapter.RecyclerViewAdapter;
 
-import butterknife.Bind;
-import butterknife.OnClick;
+import butterknife.BindView;
 
 public class DetailViewActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
-    @Bind(R.id.coordinator)
+    @BindView(R.id.coordinator)
     CoordinatorLayout coordinatorLayout;
-    @Bind(R.id.edit_fab)
+    @BindView(R.id.edit_fab)
     FloatingActionButton fab;
 
 

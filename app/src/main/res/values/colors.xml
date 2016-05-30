@@ -6,10 +6,18 @@
     <color name="colorTextPrimary">#000000</color>
     <color name="colorDismissItemDelete">#B71C1C</color>
     <color name="colorDismissItemUndo">#8BC34A</color>
+
+    <color name="text_secondary_dark">#8a000000</color> <!-- 54% -->
+
+
    <!-- Material Color-->
+    <color name="grey_300">#ffe0e0e0</color>
     <color name="grey_400">#BDBDBD</color>
     <color name="grey_500">#9E9E9E</color>
     <color name="grey_700">#616161</color>
+    <color name="mid_grey">#40808080</color>
+    <color name="background_light">#fafafa</color> <!-- grey 50 -->
 
+    <color name="designer_news_link_highlight">#b303a9f4</color>
 
 </resources>

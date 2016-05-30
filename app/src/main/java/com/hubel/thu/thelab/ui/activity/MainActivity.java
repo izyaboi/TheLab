@@ -2,11 +2,7 @@ package com.hubel.thu.thelab.ui.activity;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -14,9 +10,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.hubel.thu.thelab.R;
 import com.hubel.thu.thelab.ui.base.BaseActivity;
 import com.hubel.thu.thelab.ui.fragment.MainActivityFragment;
-import com.hubel.thu.thelab.ui.fragment.SignInFragment;
 
-import butterknife.Bind;
 
 public class MainActivity extends BaseActivity {
 
@@ -60,6 +54,7 @@ public class MainActivity extends BaseActivity {
             FirebaseAuth.getInstance().signOut();
             Intent intent = new Intent(this, SignInActivity.class);
             startActivity(intent);
+            finish();
         }
         return false;
     }

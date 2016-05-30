@@ -20,4 +20,11 @@
     <string name="sign_up_message">You have signed up!</string>
     <string name="loading">Lade...</string>
     <string name="empty_list">kein Inhalt</string>
+
+    <string name="get_accounts_permission_primer_message">Autocomplete email addresses</string>
+
+    <!-- transition shared elements -->
+    <string name="transition_add_item" translatable="false">transition_add_item</string>
+    <string name="login_failed">Log in failed</string>
+
 </resources>

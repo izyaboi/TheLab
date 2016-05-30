@@ -42,9 +42,9 @@ ext {
     rxJavaLibVersion = '1.1.0'
     rxBindingLib = '0.4.0'
     //Firebase
-    firebaseLibVersion = '9.0.0'
+    firebaseLibVersion = '9.0.1'
     //Other
-    butterknifeLibVersion = '7.0.1'
+    butterknifeLibVersion = '8.0.1'
     swipeToDissmissLibVersion = '1.0'
     textDrawableLibVersion = '1.0.1'
     daggerLibVersion = '2.2'
@@ -55,6 +55,8 @@ ext {
     espressoLib = '2.2'
     uiAutomatorLib = '2.1.1'
     supportRunnerRulesLib = "0.3"
+    //Retrofit
+    retrofitLib ='2.0.2'
 }
 
 dependencies {
@@ -84,12 +86,14 @@ dependencies {
     compile "com.android.support:recyclerview-v7:${supportLibVersion}"
     compile "com.android.support:design:${supportLibVersion}"
     compile "com.android.support:support-v4:${supportLibVersion}"
+    compile "com.android.support:cardview-v7:${supportLibVersion}"
     compile "com.android.databinding:library:${dataBindingLibVersion}"
     compile "com.android.databinding:adapters:${dataBindingLibVersion}"
     compile "io.reactivex:rxjava:${rxJavaLibVersion}"
     compile "io.reactivex:rxandroid:${rxJavaLibVersion}"
     compile "com.jakewharton.rxbinding:rxbinding:${rxBindingLib}"
     compile "com.jakewharton:butterknife:${butterknifeLibVersion}"
+    apt "com.jakewharton:butterknife-compiler:${butterknifeLibVersion}"
     compile "com.hudomju:swipe-to-dismiss-undo:${swipeToDissmissLibVersion}"
     compile "com.amulyakhare:com.amulyakhare.textdrawable:${textDrawableLibVersion}"
 
@@ -107,15 +111,17 @@ dependencies {
 
     // provided 'org.glassfish:javax.annotation:10.0-b28' //Required by Dagger2
     compile "com.google.dagger:dagger:${daggerLibVersion}"
+    //Retrofit
+    compile "com.squareup.retrofit2:retrofit:${retrofitLib}"
 
     // APT dependencies
     apt daggerCompiler
     testApt daggerCompiler
     androidTestApt daggerCompiler
     compile 'javax.inject:javax.inject:1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha2'
     provided 'javax.annotation:jsr250-api:1.0'
-    compile 'com.android.support:cardview-v7:23.4.0'
+
 }
 
 apply plugin: 'com.google.gms.google-services'

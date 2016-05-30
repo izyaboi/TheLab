@@ -16,7 +16,7 @@ import android.widget.EditText;
 import com.hubel.thu.thelab.ItemAddHandler;
 import com.hubel.thu.thelab.R;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -25,7 +25,7 @@ import butterknife.ButterKnife;
 public class AddItemDialogFragment extends AppCompatDialogFragment implements ItemAddHandler, DialogInterface.OnClickListener,View.OnClickListener{
 
 
-    @Bind(R.id.addItemEditText)
+    @BindView(R.id.addItemEditText)
     EditText addItemEditText;
     final AlertDialog alertDialog = null;
 

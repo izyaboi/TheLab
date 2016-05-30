@@ -1,4 +1,4 @@
-package com.hubel.thu.thelab.ui.animation;
+package com.hubel.thu.thelab.ui.transitions;
 
 
 import android.animation.Animator;

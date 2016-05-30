@@ -26,6 +26,7 @@
                 android:minHeight="360dp">
 
                 <LinearLayout
+                    android:id="@+id/container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:focusable="true"
@@ -38,20 +39,28 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="56dp"
                         android:layout_marginRight="56dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="@dimen/padding_normal"
                         android:textColorHint="@color/grey_500">
 
-                        <EditText
+                        <AutoCompleteTextView
                             android:id="@+id/email_et"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="Email"
                             android:drawablePadding="5dp"
+                            android:textColorHighlight="@color/designer_news_link_highlight"
                             android:drawableStart="@drawable/ic_email_grey_24dp"
                             android:inputType="textEmailAddress"
                             android:maxLength="@integer/EMAIL_TEXT_LENGTH"
                             android:textColor="@color/grey_700"
                             android:textColorHint="@color/grey_500" />
+
+                        <CheckBox
+                            android:id="@+id/permission_primer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/get_accounts_permission_primer_message"
+                            style="@style/Widget.Plaid.HintCheckBox" />
 
                     </android.support.design.widget.TextInputLayout>
 
@@ -92,6 +101,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/sign_up_ll"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
@@ -118,10 +128,11 @@
 
                 </LinearLayout>
 
+               <include layout="@layout/loading" />
+
             </FrameLayout>
-
         </ScrollView>
-
+    </FrameLayout>
         <LinearLayout
             android:id="@+id/sign_in_ll"
             android:layout_width="match_parent"
@@ -142,8 +153,6 @@
                 android:textSize="16sp" />
 
         </LinearLayout>
-
-    </FrameLayout>
 
 
 </android.support.design.widget.CoordinatorLayout>
